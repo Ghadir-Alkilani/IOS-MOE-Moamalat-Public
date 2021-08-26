@@ -1,0 +1,78 @@
+/* 
+  Localizable.strings
+  Moamalat
+
+  Created by Ghadir kilani on 03/12/1442 AH.
+  
+*/
+
+//MARK: - Login Screen
+
+"login_title_label" = "Log In";
+"login_info_label" = "Please Enter Your Employment Information";
+"login_id_textfield_placeholder" = "Employment Number";
+"login_password_textfield_placeholder" = "Password";
+"login_with_touchid_title" = "Login With Touch ID";
+"login_button_title" = "Log In";
+
+//MARK: - Inbox Screen
+
+"inbox_private_correspondence"="Private correspondence";
+"inbox_public_correspondence"="Public correspondence";
+"all"="All";
+"unread"="unread";
+"CC"="Images";
+"halfTime"="Delay";
+"impotant"="Impotant";
+"now"="Now";
+"urgent"="Urgent";
+"importantUrgent"="Important & Urgent";
+//MARK: - Menu Screen
+
+"my_correspondence"="My correspondence";
+"sent_correspondence"="Sent correspondence";
+"search"="Search";
+"settings"="Settings";
+"logout"="Logout";
+
+//MARK: - Search Screen
+"AdvancedSearch"="Advance search";
+"FullSearch"="Full search";
+"barcode"="Barcode";
+"correspondence_subject"="Correspondence Subject";
+"correspondence_number"="Correspondence number";
+
+//MARK: - Logout Screen
+"Confirmation" = "Confirmation";
+"logOutAlert" = "Are you sure you want to logout?";
+"Yes" = "Yes";
+"No" = "No";
+"ok" = "Ok";
+"cancel"="Cancel";
+
+//MARK: - Filter Screen
+
+"show_Result"="Show result";
+"month"="Month";
+"week"="Week";
+"day"="Day";
+"other"="Other";
+
+//MARK: - Create Correspondence Screen
+
+"remarks"="Remarks";
+
+//MARK: -  File Name Screen
+"default_name"="Default name";
+"agree"="Agree";
+
+
+//MARK: -  Attachement  Screen
+"No_Attachement_available"="No attachements available";
+"No data available"="No data available";
+
+//MARK: -  Sent  Screen
+"today"="Today";
+"last_Week"="Last week";
+"last_Month"="Last month";
+"other"="other";

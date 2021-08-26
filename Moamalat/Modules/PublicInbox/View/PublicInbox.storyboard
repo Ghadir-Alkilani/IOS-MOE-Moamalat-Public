@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="uBN-Cf-e79">
+            <objects>
+                <navigationController id="O1u-JE-1k0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3MJ-jt-4a3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="MoamalatDarkBlue"/>
+                        <color key="barTintColor" name="MoamalatDarkBlue"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" red="0.098082549869999994" green="0.26281177999999999" blue="0.28423666949999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textShadowColor" name="MoamalatDarkBlue"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yfM-Jp-xtk" kind="relationship" relationship="rootViewController" id="nhf-Tk-lM4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQN-4s-Jwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-838" y="65"/>
+        </scene>
+        <!--Public Inbox View Controller-->
+        <scene sceneID="MKH-B1-AaM">
+            <objects>
+                <viewController storyboardIdentifier="PublicInboxViewController" id="yfM-Jp-xtk" customClass="PublicInboxViewController" customModule="Moamalat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="50Z-co-g6y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qgA-uC-96T">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yfM-Jp-xtk" id="gVo-hM-1Ih"/>
+                                    <outlet property="delegate" destination="yfM-Jp-xtk" id="DL3-QM-kYn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1M6-h9-VrJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1M6-h9-VrJ" firstAttribute="bottom" secondItem="qgA-uC-96T" secondAttribute="bottom" id="2LX-3F-ox7"/>
+                            <constraint firstAttribute="trailing" secondItem="qgA-uC-96T" secondAttribute="trailing" id="dxo-eE-y6k"/>
+                            <constraint firstItem="qgA-uC-96T" firstAttribute="leading" secondItem="1M6-h9-VrJ" secondAttribute="leading" id="pvV-EN-cSd"/>
+                            <constraint firstItem="qgA-uC-96T" firstAttribute="top" secondItem="1M6-h9-VrJ" secondAttribute="top" id="vLX-SA-4YO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VhI-hj-Jck"/>
+                    <connections>
+                        <outlet property="tableView" destination="qgA-uC-96T" id="Vb8-1s-wAh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bh6-mw-bj5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112" y="65"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="MoamalatDarkBlue">
+            <color red="0.019607843137254902" green="0.28235294117647058" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

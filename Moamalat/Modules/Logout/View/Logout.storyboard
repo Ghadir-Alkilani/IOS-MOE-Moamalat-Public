@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GE SS Two Medium.otf">
+            <string>GESSTwoMedium-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Logout View Controller-->
+        <scene sceneID="mlM-Kb-q7L">
+            <objects>
+                <viewController storyboardIdentifier="LogoutViewController" id="m8K-my-RTs" customClass="LogoutViewController" customModule="Moamalat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AMa-LN-iRU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6J-CD-WTX">
+                                <rect key="frame" x="77" y="363" width="260" height="170"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnD-Zd-MzM">
+                                        <rect key="frame" x="8" y="8" width="244" height="20"/>
+                                        <fontDescription key="fontDescription" name="GESSTwoMedium-Medium" family="GE SS Two" pointSize="17"/>
+                                        <color key="textColor" name="MoamalatDarkBrown"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVc-yR-f9i">
+                                        <rect key="frame" x="8" y="43" width="244" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.33721464870000001" green="0.33727809790000002" blue="0.33721065519999999" alpha="0.82975706339999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONg-97-3EQ">
+                                        <rect key="frame" x="8" y="88.5" width="244" height="81.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="EAZ-gf-Oc9">
+                                                <rect key="frame" x="1.5" y="13.5" width="241" height="55"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOg-DR-RfA" customClass="SecondaryButton" customModule="Moamalat" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="115" height="55"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="4Ss-C8-Lv7"/>
+                                                            <constraint firstAttribute="height" constant="55" id="YVP-c7-hR6"/>
+                                                        </constraints>
+                                                        <state key="normal" title="yes"/>
+                                                        <connections>
+                                                            <action selector="yesAction:" destination="m8K-my-RTs" eventType="touchUpInside" id="iLr-gQ-NjK"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKa-7U-W7a">
+                                                        <rect key="frame" x="126" y="0.0" width="115" height="55"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="55" id="3r9-O3-dp2"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="dsj-H8-o6e"/>
+                                                        </constraints>
+                                                        <state key="normal" title="no">
+                                                            <color key="titleColor" name="MoamalatDarkBlue"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="27"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" name="MoamalatDarkBlue"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="cancelAction:" destination="m8K-my-RTs" eventType="touchUpInside" id="d6x-Md-8oE"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="EAZ-gf-Oc9" firstAttribute="centerX" secondItem="ONg-97-3EQ" secondAttribute="centerX" id="72i-yH-91c"/>
+                                            <constraint firstItem="EAZ-gf-Oc9" firstAttribute="centerY" secondItem="ONg-97-3EQ" secondAttribute="centerY" id="VCO-bN-sXA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="88P-Z0-W4T"/>
+                                    <constraint firstItem="IVc-yR-f9i" firstAttribute="top" secondItem="cnD-Zd-MzM" secondAttribute="bottom" constant="15" id="FCC-t1-LsC"/>
+                                    <constraint firstAttribute="trailing" secondItem="ONg-97-3EQ" secondAttribute="trailing" constant="8" id="Fxp-xt-6cP"/>
+                                    <constraint firstItem="ONg-97-3EQ" firstAttribute="leading" secondItem="p6J-CD-WTX" secondAttribute="leading" constant="8" id="HSC-dU-aXw"/>
+                                    <constraint firstItem="cnD-Zd-MzM" firstAttribute="leading" secondItem="p6J-CD-WTX" secondAttribute="leading" constant="8" id="Mhn-kP-CdU"/>
+                                    <constraint firstItem="IVc-yR-f9i" firstAttribute="leading" secondItem="p6J-CD-WTX" secondAttribute="leading" constant="8" id="RPj-46-2lN"/>
+                                    <constraint firstAttribute="bottom" secondItem="ONg-97-3EQ" secondAttribute="bottom" id="SEj-0N-tJw"/>
+                                    <constraint firstAttribute="width" constant="260" id="coq-aR-KCR"/>
+                                    <constraint firstItem="cnD-Zd-MzM" firstAttribute="top" secondItem="p6J-CD-WTX" secondAttribute="top" constant="8" id="iUw-lL-6uf"/>
+                                    <constraint firstItem="ONg-97-3EQ" firstAttribute="top" secondItem="IVc-yR-f9i" secondAttribute="bottom" constant="25" id="kJo-eb-F1h"/>
+                                    <constraint firstAttribute="trailing" secondItem="cnD-Zd-MzM" secondAttribute="trailing" constant="8" id="vJs-6V-Clr"/>
+                                    <constraint firstAttribute="trailing" secondItem="IVc-yR-f9i" secondAttribute="trailing" constant="8" id="xTw-JS-pO4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AtJ-X6-Vx7"/>
+                        <color key="backgroundColor" red="0.4911861997662168" green="0.4911861997662168" blue="0.4911861997662168" alpha="0.88419549196761171" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="p6J-CD-WTX" firstAttribute="centerX" secondItem="AMa-LN-iRU" secondAttribute="centerX" id="BNs-bE-rnm"/>
+                            <constraint firstItem="p6J-CD-WTX" firstAttribute="centerY" secondItem="AMa-LN-iRU" secondAttribute="centerY" id="lhg-HQ-1cD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBtn" destination="OKa-7U-W7a" id="kke-gT-pFV"/>
+                        <outlet property="logoutMessage" destination="IVc-yR-f9i" id="8uS-VQ-nwe"/>
+                        <outlet property="logoutTitle" destination="cnD-Zd-MzM" id="qlN-Jj-vLi"/>
+                        <outlet property="yesBtn" destination="JOg-DR-RfA" id="qBB-4D-9Ha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfv-eU-QNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="79"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="JOg-DR-RfA">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <namedColor name="MoamalatDarkBlue">
+            <color red="0.019607843137254902" green="0.28235294117647058" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MoamalatDarkBrown">
+            <color red="0.63529411764705879" green="0.46274509803921571" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,88 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
+        }
+      },
+      {
+        "package": "AnyCodable",
+        "repositoryURL": "https://github.com/Flight-School/AnyCodable",
+        "state": {
+          "branch": null,
+          "revision": "69261f239f0fffaf51495dadc4f8483fbfe97025",
+          "version": "0.6.1"
+        }
+      },
+      {
+        "package": "BarcodeScanner",
+        "repositoryURL": "https://github.com/hyperoslo/BarcodeScanner",
+        "state": {
+          "branch": null,
+          "revision": "059cd71c4e3b9efc8d7e42fa1948bf572471b448",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "IQKeyboardManagerSwift",
+        "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager",
+        "state": {
+          "branch": null,
+          "revision": "4dc6bc7d1c9747bd0c261c8c055903f9fdef91f7",
+          "version": "6.5.6"
+        }
+      },
+      {
+        "package": "Lottie",
+        "repositoryURL": "https://github.com/airbnb/lottie-ios",
+        "state": {
+          "branch": null,
+          "revision": "79a0b70547f7c40ea54c67487f935fa2f2eaaadc",
+          "version": "3.2.3"
+        }
+      },
+      {
+        "package": "SnackBar",
+        "repositoryURL": "https://github.com/ahmedAlmasri/SnackBar.swift",
+        "state": {
+          "branch": null,
+          "revision": "1582bc0f57a65a84f2bed763ed695d30f7afe3a0",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "SwiftyGif",
+        "repositoryURL": "https://github.com/kirualex/SwiftyGif",
+        "state": {
+          "branch": null,
+          "revision": "0cd770feed5807d9fd4fa8df5ad74b56b814b0c8",
+          "version": "5.4.0"
+        }
+      },
+      {
+        "package": "TTGSnackbar",
+        "repositoryURL": "https://github.com/zekunyan/TTGSnackbar",
+        "state": {
+          "branch": null,
+          "revision": "a9a22eba7471d02abdd1f355baea98ec547de0ae",
+          "version": "1.10.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,76 @@
+/* 
+  Localizable.strings
+  Moamalat
+
+  Created by Ghadir kilani on 03/12/1442 AH.
+  
+*/
+
+//MARK: - Login Screen
+
+"login_title_label" = "تسجيل الدخول";
+"login_info_label" = "قم بادخال بياناتك الوظيفية";
+"login_id_textfield_placeholder" = "الرقم الوظيفي";
+"login_password_textfield_placeholder" = "كلمة المرور";
+"login_with_touchid_title" = "دخول بالبصمة";
+"login_button_title" = "تسجيل الدخول";
+
+//MARK: - Inbox Screen
+
+"inbox_private_correspondence"="معاملات خاصة";
+"inbox_public_correspondence"="معاملات عامة";
+"all"="الكل";
+"unread"="غير مقروءة";
+"CC"="الصور";
+"halfTime"="متأخرة";
+"impotant"="هام";
+"now"="حالا";
+"urgent"="عاجل";
+"importantUrgent"="هام وعاجل";
+
+//MARK: - Menu Screen
+"my_correspondence"="معاملاتي";
+"sent_correspondence"="المعاملات المرسلة";
+"search"="البحث";
+"settings"="الاعدادات";
+"logout"="تسجيل خروج";
+
+//MARK: - Search Screen
+"AdvancedSearch"="البحث المتقدم";
+"FullSearch"="البحث الشامل";
+"barcode"="باركود";
+"correspondence_subject"="موضوع المعاملة";
+"correspondence_number"="رقم المعاملة";
+
+//MARK: - Logout Screen
+"Confirmation" = "تأكيد";
+"logOutAlert" = "هل تريد تسجيل الخروج؟";
+"Yes" = "نعم";
+"No" = "لا";
+"cancel"="الغاء";
+
+//MARK: - Filter Screen
+"show_Result"="عرض النتائج";
+"month"="شهر";
+"week"="اسبوع";
+"day"="يوم";
+"other"="اخرى";
+
+//MARK: - Create Correspondence Screen
+"remarks"="الملاحظات";
+
+
+//MARK: -  File Name Screen
+"default_name"="اسم افتراضي";
+"agree"="موافق";
+
+
+//MARK: -  Attachement  Screen
+"No_Attachement_available"="لا يوجد مرفقات";
+"No data available"="لايوجد بيانات";
+
+//MARK: -  Sent  Screen
+"today"="اليوم";
+"last_Week"="آخر أسبوع";
+"last_Month"="آخر شهر";
+"other"="أخرى";
