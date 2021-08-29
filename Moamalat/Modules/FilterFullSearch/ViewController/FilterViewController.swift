@@ -8,8 +8,10 @@
 import UIKit
 
 class FilterViewController: UIViewController {
-    @IBOutlet weak var corresDateLable: UILabel!
     
+    //MARK: - Outlets
+    
+    @IBOutlet weak var corresDateLable: UILabel!
     @IBOutlet weak var fromLable: UILabel!
     @IBOutlet weak var forwardDateLable: UILabel!
     @IBOutlet weak var toLable: UILabel!
@@ -39,38 +41,43 @@ class FilterViewController: UIViewController {
         }
     }
     
+    //MARK: - Variables
+    
     var searchText = String()
     var hijricYear = Int()
     let viewModel = FilterViewModel()
     let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let toolbar = UIToolbar()
     
-
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         setFonts()
         setupViewModel()
-        CreateDatePicker()
+        applyLayout()
+        applyDatePicker()
         viewModel.getType()
         viewModel.getScope()
+        
     }
     
-    func  CreateDatePicker(){
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        toolbar.setItems([doneBtn], animated: true)
-        
+    //MARK: - Helper Method
+    
+    func  applyLayout(){
         corresDateStackView.removeArrangedSubview(corresDateView)
         corresDateView.isHidden = true
-        
         forwardDateStackView.removeArrangedSubview(forwardDateView)
         forwardDateView.isHidden = true
-        
         corresDateSegmentControll.addTarget(self, action: #selector(handeleSegmentChange), for: .valueChanged)
         forwardDateSegmentControll.addTarget(self, action: #selector(handeleForwardSegmentChange), for: .valueChanged)
-        
+    }
+    
+    func applyDatePicker() {
+        toolbar.sizeToFit()
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneBtn], animated: true)
         fromCorresDateTF.inputView = datePicker
         fromCorresDateTF.inputAccessoryView = toolbar
         fromForwardDateTF.inputView = datePicker
@@ -80,13 +87,14 @@ class FilterViewController: UIViewController {
         toForwardDateTF.inputAccessoryView = toolbar
         toForwardDateTF.inputView = datePicker
     }
+    
     @objc fileprivate func handeleSegmentChange(){
         switch corresDateSegmentControll.selectedIndex {
         case 0:
              corresDateStackView.removeArrangedSubview(corresDateView)
             corresDateView.isHidden = true
             
-            case 1:
+        case 1:
                 corresDateStackView.removeArrangedSubview(corresDateView)
                 corresDateView.isHidden = true
         case 2:
@@ -103,6 +111,7 @@ class FilterViewController: UIViewController {
         }
       
     }
+    
     @objc fileprivate func handeleForwardSegmentChange(){
         switch forwardDateSegmentControll.selectedIndex {
         case 0:
@@ -126,6 +135,7 @@ class FilterViewController: UIViewController {
         }
       
     }
+    
     @objc func donePressed(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
@@ -205,21 +215,12 @@ class FilterViewController: UIViewController {
         view.endEditing(true)
     }
     
+    //MARK: - Actions
+    
     @IBAction func showResultAction(_ sender: Any) {
         let fullSearchModel  =  FullSearchModel.init()
-       // print(CachingManager.maxScope())
         switch corresDateSegmentControll.selectedIndex  {
         
-//        String searchText
-//                int findIn
-//                int hijricYear (default - 1)
-//        int correspondenceType (default - 1)
-//        int correspondenceDateType (default - 1) 0 other 1 day 7 week 30 month
-//        int forwardingDateType (default - 1) 0 other 1 day 7 week 30 month
-//        String fromDate (default - 1) like (10 / 10 / 1441)
-//        String toDate (default - 1) like (10 / 10 / 1441)
-//        String forwardingFromDate (default - 1) like (10 / 10 / 1441)
-//        String forwardingToDate (default - 1) like (10 / 10 / 1441)
         case 0:
             fullSearchModel.correspondenceDateType = -1
 
@@ -292,7 +293,9 @@ class FilterViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
+    
+    //MARK: - Initialization
+    
     class func initializeFromStoryboard() -> FilterViewController {
         
         let storyboard = UIStoryboard(name: Storyboards.FilterFullSearch, bundle: nil)
@@ -314,49 +317,19 @@ class FilterViewController: UIViewController {
             obj.id = -1
             self.corresTypeTF.optionArray.append(obj)
             self.corresTypeTF.optionArray.append(contentsOf: optionArray)
-            
             self.corresTypeTF.text = corresTypeTF.optionArray[0].valueAr
             self.corresTypeTF.selectedItem? = optionArray[0]
         }
+        
         viewModel.scopeArray = { [unowned self] (optionArray) in
             let scope =  Int(CachingManager.maxScope() ?? "0")
-
             self.corresScopeTF.optionArray = optionArray
             self.corresScopeTF.text = corresScopeTF.optionArray[scope!].valueAr
             self.corresScopeTF.selectedItem? = optionArray[scope!]
         }
         
-       
     }
     
-//    func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool
-//    {
-//        autocompleteTableView.isHidden = false
-//        var substring = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//
-//        searchAutocompleteEntriesWithSubstring(substring)
-//        return true     // not sure about this - could be false
-//    }
-//
-//    func searchAutocompleteEntriesWithSubstring(substring: String)
-//    {
-//        autocompleteUrls.removeAll(keepCapacity: false)
-//        var indexOfPastUrls = 0
-//
-//        for curString in pastUrls
-//        {
-//            let substringRange = curString.rangeOfString(curString)
-//
-//            if (indexOfPastUrls  == 0)
-//            {
-//                autocompleteUrls.append(curString)
-//            }
-//            indexOfPastUrls = indexOfPastUrls + 1
-//        }
-//        autocompleteTableView.reloadData()
-//    }
-    
-   
 }
 
 

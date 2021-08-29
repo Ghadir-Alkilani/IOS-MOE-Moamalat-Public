@@ -59,7 +59,7 @@ class CustomSegmentedControl: UIControl {
         for (buttonIndex, btn) in buttons.enumerated() {
             btn.setTitleColor(textColor, for: .normal)
             if btn == sender {
-             let   selectorPosition = frame.width/CGFloat(buttonTitles.count) * CGFloat(buttonIndex)
+           //  let   selectorPosition = frame.width/CGFloat(buttonTitles.count) * CGFloat(buttonIndex)
                selectedIndex = buttonIndex
                // print(selectedIndex)
                 delegate?.change(to: selectedIndex)

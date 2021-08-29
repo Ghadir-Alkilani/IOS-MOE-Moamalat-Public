@@ -8,7 +8,10 @@
 import UIKit
 import UniformTypeIdentifiers
 import PDFKit
+
 class AttachmentViewController: UIViewController {
+    
+    //MARK: - Outlets
     
     @IBOutlet weak var nextBtn: PrimaryButton!
     @IBOutlet weak var attachmentLable: UILabel!
@@ -17,26 +20,30 @@ class AttachmentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var attachmentTitleLable: UILabel!
+    
+    //MARK: - Variables
+    
     let documentsPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.png,UTType.jpeg, UTType.pdf],asCopy: true)
     
     let obj = AttachmentModel()
     let viewModel = AttachmentViewModel()
-
     let vc = UIImagePickerController()
     var correpondenceTypeId = Int()
     var correspondenceId = String()
     var extention = String()
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewModel()
-        
+        applyLayout()
        
-        
-        
+    }
+    
+    func applyLayout() {
         obj.correspondenceId = "37/1442"
         obj.correspondenceTypeId = 3
-
-        //viewModel.att()
         vc.sourceType = .camera
         vc.allowsEditing = true
         vc.delegate = self
@@ -45,22 +52,16 @@ class AttachmentViewController: UIViewController {
         documentsPicker.modalPresentationStyle = .fullScreen
         attachmentTitleLable.font = UIFont.jFFlatRegular(fontSize: 22)
         nextLable.font = UIFont.jFFlatRegular(fontSize: 18)
-        setupViewModel()
-       
     }
-    
+   
     
     //MARK: - SetUp ViewModel
     
     func setupViewModel() {
     
-//        viewModel.presentViewController = { [unowned self] (vc) in
-//            self.present(vc, animated: true, completion: nil)
-//           // self.navigationController?.pushViewController(vc, animated: true)
-//        }
-        
       
-        viewModel.attachArray = { [unowned self] (optionArray) in
+        viewModel.attachArray = {
+            (optionArray) in
            print(optionArray)
             print(optionArray)
         }
@@ -79,12 +80,17 @@ class AttachmentViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
     }
+    
+    //MARK: - Initialization
+    
     class func initializeFromStoryboard() -> AttachmentViewController {
         
         let storyboard = UIStoryboard(name: Storyboards.CreateCorrespondence, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: AttachmentViewController.self)) as! AttachmentViewController
     }
-
+    
+    //MARK: - Actions
+    
     @IBAction func takePhoto(_ sender: Any) {
         present(vc, animated: true)
         
@@ -100,23 +106,23 @@ class AttachmentViewController: UIViewController {
     }
    
 }
+
+//MARK: - UINavigationController Delegate
+
 extension AttachmentViewController : UINavigationControllerDelegate {
     
 }
+
+
+//MARK: - UIImagePickerController Delegate
 
 extension AttachmentViewController : UIImagePickerControllerDelegate{
     // Image picker from Gallery
         func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
             picker.dismiss(animated: true, completion: nil)
-           // profileImage.image = image
 
         }
-    // Image Picker from Camera
-//
-//       func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        picker.dismiss(animated: true, completion: nil)
-//
-//       }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
 
@@ -132,6 +138,7 @@ extension AttachmentViewController : UIImagePickerControllerDelegate{
         present(vc, animated: true, completion: nil)
 
     }
+    
      func mimeType(for data: Data) -> String {
 
         var b: UInt8 = 0
@@ -197,9 +204,6 @@ extension AttachmentViewController:returnDocumentTitleDelegate{
         tableView.reloadData()
     }
 }
-
-//correspondenceId = "37/1442";
-//correspondenceTypeId = 3;
 
 
 // MARK:- UITableViewController DataSource

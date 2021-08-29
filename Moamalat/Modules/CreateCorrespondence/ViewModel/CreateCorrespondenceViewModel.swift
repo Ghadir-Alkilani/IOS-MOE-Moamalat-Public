@@ -8,6 +8,8 @@
 import Foundation
 class CreateCorrespondenceViewModel: BaseViewModel  {
     
+    //MARK: - Variables
+    
 var dropDownModel = [DropDownModel]()
 lazy var service = SearchService()
 lazy var createService = CreateCorrespondenceService()
@@ -15,16 +17,17 @@ var presentViewController: ((_ vc: UIViewController) -> ())?
 var categoryArray : ((_ array: [DropDownModel]) -> ())?
 var confidentialtyArray : ((_ array: [DropDownModel]) -> ())?
 var typeArray : ((_ array: [DropDownModel]) -> ())?
-    var corresModel = [CreateCorrespondenceModel]()
+var corresModel = [CreateCorrespondenceModel]()
 
-
+    
+    // MARK: - API Calling
+    
 func getType()  {
     
     LoadingIndicator.showActivityIndicator()
     
     createService.getType( success: { [self] (response) in
         
-        print(response)
         guard let responseArray = response as?[Any] else { return}
         self.dropDownModel = responseArray.map({ (DropDownModel(from: $0) ?? DropDownModel())})
         self.typeArray?(dropDownModel)
@@ -38,7 +41,6 @@ func getCategory()  {
     
     createService.getCategory( success: { [self] (response) in
         
-        print(response)
         guard let responseArray = response as?[Any] else { return}
         self.dropDownModel = responseArray.map({ (DropDownModel(from: $0) ?? DropDownModel())})
         self.categoryArray?(dropDownModel)
@@ -52,8 +54,7 @@ func getConfidentialty()  {
     LoadingIndicator.showActivityIndicator()
     
     createService.getConfidentialty(success: { [self] (response) in
-        
-        print(response)
+    
         guard let responseArray = response as?[Any] else { return}
         self.dropDownModel = responseArray.map({ (DropDownModel(from: $0) ?? DropDownModel())})
         self.confidentialtyArray?(dropDownModel)
@@ -67,8 +68,7 @@ func getConfidentialty()  {
         
         createService.createCorrespondence(createModel : createModel , success: { [self] (response) in
   
-            print(response)
-            guard let responseArray = response as?[Any] else { return}
+            guard let responseArray = response as? [Any] else { return}
             self.corresModel = responseArray.map({ (CreateCorrespondenceModel(from: $0) ?? CreateCorrespondenceModel())})
     
             let vc = AttachmentViewController.initializeFromStoryboard()

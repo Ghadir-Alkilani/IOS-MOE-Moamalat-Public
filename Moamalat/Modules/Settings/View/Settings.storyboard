@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="aMz-0t-E8I">
+            <objects>
+                <navigationController id="uNb-Jh-lRI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vnn-hb-AdL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WDI-03-5hN" kind="relationship" relationship="rootViewController" id="9jp-qb-RTC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PBC-4a-dxN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1091" y="108"/>
+        </scene>
+        <!--الإعدادات-->
+        <scene sceneID="oMx-4K-btB">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="WDI-03-5hN" customClass="SettingsViewController" customModule="Moamalat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M7P-gL-bxY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEp-if-HbH">
+                                <rect key="frame" x="20" y="108" width="374" height="110"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75r-1d-t87" userLabel="SecondView">
+                                        <rect key="frame" x="0.0" y="33" width="374" height="33"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="تفعيل الوضع المظلم" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTO-ay-NGy">
+                                                <rect key="frame" x="8" y="6" width="301" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <color key="textColor" name="MoamalatDarkBrown"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xz1-Ya-ZCd">
+                                                <rect key="frame" x="317" y="1" width="51" height="31"/>
+                                                <color key="tintColor" name="MoamalatLightBlue"/>
+                                                <color key="onTintColor" name="MoamalatLightBlue"/>
+                                            </switch>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="xz1-Ya-ZCd" firstAttribute="centerY" secondItem="UTO-ay-NGy" secondAttribute="centerY" id="8A0-sX-aqc"/>
+                                            <constraint firstAttribute="trailing" secondItem="xz1-Ya-ZCd" secondAttribute="trailing" constant="8" id="9nR-eh-NhS"/>
+                                            <constraint firstItem="UTO-ay-NGy" firstAttribute="leading" secondItem="75r-1d-t87" secondAttribute="leading" constant="8" id="BBy-lY-T4q"/>
+                                            <constraint firstAttribute="height" constant="33" id="JLX-lr-x4n"/>
+                                            <constraint firstAttribute="trailing" secondItem="xz1-Ya-ZCd" secondAttribute="trailing" constant="8" id="P2L-P8-huq"/>
+                                            <constraint firstItem="UTO-ay-NGy" firstAttribute="centerY" secondItem="75r-1d-t87" secondAttribute="centerY" id="Sie-US-ILu"/>
+                                            <constraint firstItem="xz1-Ya-ZCd" firstAttribute="leading" secondItem="UTO-ay-NGy" secondAttribute="trailing" constant="8" id="lUA-eJ-I02"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4GJ-38-AfW" userLabel="firstView">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="الوضع المظلم" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLy-oF-H0m">
+                                                <rect key="frame" x="8" y="6" width="108" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" name="MoamalatDarkBlue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="eLy-oF-H0m" firstAttribute="centerY" secondItem="4GJ-38-AfW" secondAttribute="centerY" id="Zr7-OQ-xIX"/>
+                                            <constraint firstItem="eLy-oF-H0m" firstAttribute="leading" secondItem="4GJ-38-AfW" secondAttribute="leading" constant="8" id="gCf-ND-6WZ"/>
+                                            <constraint firstAttribute="height" constant="33" id="htm-GV-qug"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="MoamalatLightGray"/>
+                                <constraints>
+                                    <constraint firstItem="4GJ-38-AfW" firstAttribute="leading" secondItem="cEp-if-HbH" secondAttribute="leading" id="2EA-vY-TsF"/>
+                                    <constraint firstAttribute="height" constant="110" id="9vQ-Ia-OPR"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="A27-e3-taG"/>
+                                    <constraint firstAttribute="trailing" secondItem="4GJ-38-AfW" secondAttribute="trailing" id="Mue-RL-82L"/>
+                                    <constraint firstItem="4GJ-38-AfW" firstAttribute="top" secondItem="cEp-if-HbH" secondAttribute="top" id="QLp-cM-FoC"/>
+                                    <constraint firstItem="75r-1d-t87" firstAttribute="leading" secondItem="cEp-if-HbH" secondAttribute="leading" id="jFh-BX-24o"/>
+                                    <constraint firstAttribute="trailing" secondItem="75r-1d-t87" secondAttribute="trailing" id="yWD-dP-74O"/>
+                                    <constraint firstItem="75r-1d-t87" firstAttribute="top" secondItem="4GJ-38-AfW" secondAttribute="bottom" id="yuU-My-Boz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BI2-sm-3cx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cEp-if-HbH" firstAttribute="top" secondItem="BI2-sm-3cx" secondAttribute="top" constant="20" id="DHG-s6-hDQ"/>
+                            <constraint firstItem="BI2-sm-3cx" firstAttribute="trailing" secondItem="cEp-if-HbH" secondAttribute="trailing" constant="20" id="Rnu-4d-DuJ"/>
+                            <constraint firstItem="cEp-if-HbH" firstAttribute="leading" secondItem="BI2-sm-3cx" secondAttribute="leading" constant="20" id="rjU-Bd-l8H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="الإعدادات" id="qTi-xz-n2l"/>
+                    <connections>
+                        <outlet property="enableLable" destination="UTO-ay-NGy" id="Ype-F0-4Y8"/>
+                        <outlet property="enableOfflineSwitch" destination="xz1-Ya-ZCd" id="3Pr-hf-cOJ"/>
+                        <outlet property="titleLable" destination="eLy-oF-H0m" id="6p3-eN-VZO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ON4-mV-5U4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-274" y="108"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="MoamalatDarkBlue">
+            <color red="0.019607843137254902" green="0.28235294117647058" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MoamalatDarkBrown">
+            <color red="0.63529411764705879" green="0.46274509803921571" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MoamalatLightBlue">
+            <color red="0.0" green="0.66274509803921566" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MoamalatLightGray">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -161,7 +161,6 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Bmn-mf-4zW" secondAttribute="trailing" constant="156.5" id="CpY-9q-U5s"/>
                                             <constraint firstAttribute="trailing" secondItem="8Dq-jd-84I" secondAttribute="trailing" id="F0E-4L-LDA"/>
                                             <constraint firstItem="Bmn-mf-4zW" firstAttribute="top" secondItem="xc9-MC-Gqh" secondAttribute="bottom" constant="25" id="Lxf-QH-4er"/>
                                             <constraint firstItem="wrE-1k-KWT" firstAttribute="leading" secondItem="MJd-U4-qAz" secondAttribute="leading" constant="24" id="NEg-Ti-ZbP"/>
@@ -171,7 +170,6 @@
                                             <constraint firstItem="xc9-MC-Gqh" firstAttribute="leading" secondItem="MJd-U4-qAz" secondAttribute="leading" constant="24" id="Zq0-rT-Io0"/>
                                             <constraint firstAttribute="trailing" secondItem="wrE-1k-KWT" secondAttribute="trailing" constant="24" id="dr5-Xq-vfa"/>
                                             <constraint firstAttribute="trailing" secondItem="xc9-MC-Gqh" secondAttribute="trailing" constant="24" id="eWs-cX-RpP"/>
-                                            <constraint firstItem="Bmn-mf-4zW" firstAttribute="leading" secondItem="MJd-U4-qAz" secondAttribute="leading" constant="156.5" id="xt9-iQ-IGe"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -200,6 +198,9 @@
                     </view>
                     <connections>
                         <outlet property="IdNumberTextField" destination="SYv-B8-1rk" id="lQf-iv-7SX"/>
+                        <outlet property="backgroundImage" destination="7TV-nI-IM0" id="x9q-ew-QJy"/>
+                        <outlet property="containerViewWidthConst" destination="qvW-63-iGg" id="sSe-wi-Pud"/>
+                        <outlet property="copyNumLable" destination="Bmn-mf-4zW" id="GU0-NW-IQ1"/>
                         <outlet property="loginButton" destination="xc9-MC-Gqh" id="Xc4-xr-oLo"/>
                         <outlet property="loginWithTouchIdTitle" destination="ica-Ya-T7r" id="pLa-Zb-1rl"/>
                         <outlet property="passwordTextField" destination="00a-DR-MDM" id="HCp-9Z-4yv"/>

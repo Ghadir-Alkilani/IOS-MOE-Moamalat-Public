@@ -9,14 +9,21 @@
     import UIKit
 
     class MenuViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
-
+        
+        //MARK: - Outlets
+        
         @IBOutlet weak var userImage: UIImageView!
         @IBOutlet weak var DeptLable: UILabel!
         @IBOutlet weak var userName: UILabel!
         @IBOutlet weak var tableView: UITableView!
         
+        //MARK: - Variables
+        
         var menuOptions = ["my_correspondence".localized,"sent_correspondence".localized,"search".localized ,"settings".localized,"logout".localized]
       
+        
+        //MARK: - View Life Cycle
+        
         override func viewDidLoad() {
             super.viewDidLoad()
    
@@ -25,15 +32,7 @@
             self.revealViewController()?.rightViewRevealWidth = (self.view.frame.size.width) * 0.75
         }
         
-//        func makeRounded() {
-//            userImage.layer.borderWidth = 1
-//            userImage.layer.masksToBounds = false
-//            userImage.layer.borderColor = UIColor.black.cgColor
-//            userImage.layer.cornerRadius = userImage.frame.height / 2
-//            userImage.clipsToBounds = true
-//
-//            }
-//
+
         func lableAttributes()  {
 
             userName.font = UIFont(name: Fonts.JFFlatRegular, size: 25)
@@ -78,8 +77,7 @@
                 navigationController.modalPresentationStyle = .overFullScreen
                 navigationController.setViewControllers([vc], animated:true)
                 self.revealViewController()?.pushFrontViewController(navigationController, animated: true)
-                //setFront(navigationController, animated: true)
-               // present(navigationController, animated: true, completion: nil)
+              
             }else if menuOptions[indexPath.row] == "my_correspondence".localized{
                 let vc = InboxViewController.initializeFromStoryboard()
                 let navigationController = UINavigationController(rootViewController: vc)
@@ -100,6 +98,13 @@
                 navigationController.modalPresentationStyle = .overFullScreen
                 navigationController.setViewControllers([vc], animated:true)
                 self.revealViewController()?.pushFrontViewController(navigationController, animated: true)
+            } else if menuOptions[indexPath.row] == "settings".localized{
+                let vc = SettingsViewController.initializeFromStoryboard()
+                let navigationController = UINavigationController(rootViewController: vc)
+                navigationController.modalTransitionStyle = .crossDissolve
+                navigationController.modalPresentationStyle = .overFullScreen
+                navigationController.setViewControllers([vc], animated:true)
+                self.revealViewController()?.pushFrontViewController(navigationController, animated: true)
             }
         }
 
@@ -111,14 +116,6 @@
            }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 

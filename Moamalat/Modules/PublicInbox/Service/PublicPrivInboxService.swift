@@ -12,7 +12,7 @@ class PublicPrivInboxService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"29" ,"orderType":"3", "sortType":"2" , "startRow":"1", "endRow":"20" , "filterType":"-1" , "queueName":queueName , "inbasketFilter":inbasketFilter]
+        let header = ["op": OP.PrivateInboxOP ,"orderType":"3", "sortType":"2" , "startRow":"1", "endRow":"20" , "filterType":"-1" , "queueName":queueName , "inbasketFilter":inbasketFilter]
         
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         

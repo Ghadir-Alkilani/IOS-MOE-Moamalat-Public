@@ -13,7 +13,6 @@ class SearchViewModel: BaseViewModel  {
     
     // MARK: - Variabels
     
-  //  var privateModel = [PrivateInboxModel]()
     var searchResultModel = [SearchResultModel]()
     var autoCompleteResultModel = [AutoCompleteResultModel]()
     
@@ -40,33 +39,25 @@ class SearchViewModel: BaseViewModel  {
     
     func getCorrespondanceInfoFromBarcode(code: String )  {
         
-   //     LoadingIndicator.showActivityIndicator()
         startLoadingView?()
 
         service.getCorrespondanceInfoFromBarcode(code: code, success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-        //   print(response)
             guard let responseArray = response as?[Any] else { return}
-              print(responseArray)
-         
             self.searchResultModel = responseArray.map({ (SearchResultModel(from: $0) ?? SearchResultModel())})
-            //self.searcResultArray?(searchResultModel)
             let VC = SearchResultViewController.initializeFromStoryboard()
-           // VC.isHidden = true
             let navigationController = UINavigationController(rootViewController: VC)
             navigationController.modalPresentationStyle = .overFullScreen
-          
             VC.viewModel.searchResultModel = searchResultModel
             self.dismissVC?()
-          //  VC.viewModel.passData()
             self.stopLoadingView?()
-        //    VC.hidesBottomBarWhenPushed = true
-            
             self.presentViewController?(navigationController)
              
-        }, failure: nil)
-        
+        }){ (errro, error) in
+            print(error!)
+          
+            self.stopLoadingView?()
+        }
     }
     
     func getType()  {
@@ -116,17 +107,15 @@ class SearchViewModel: BaseViewModel  {
         self.stopLoadingView?()
 
     }
+    
     func getSearchResult(search:SearchModel)  {
         
         startLoadingView?()
         
         service.getSearchResult(searchModel: search,success: { [self] (response) in
-        //  print(response)
             guard let responseArray = response as?[Any] else { return}
             self.searchResultModel = responseArray.map({ (SearchResultModel(from: $0) ?? SearchResultModel())})
-            //self.searcResultArray?(searchResultModel)
             let VC = SearchResultViewController.initializeFromStoryboard()
-           // VC.isHidden = true
             let navigationController = UINavigationController(rootViewController: VC)
             navigationController.modalPresentationStyle = .overFullScreen
           
@@ -136,8 +125,7 @@ class SearchViewModel: BaseViewModel  {
             self.presentViewController?(navigationController)
 
         }) { (response, error) in
-           // print(response!)
-         //   print(error!)
+        
             self.stopLoadingView?()
 
         }
@@ -147,7 +135,7 @@ class SearchViewModel: BaseViewModel  {
         
         LoadingIndicator.showActivityIndicator()
         
-        service.getMaxSearchScope(success: { [self] (response) in
+        service.getMaxSearchScope(success: {  (response) in
             
          //   print(response)
             guard  let maxScope = (response as AnyObject).value(forKey:"value") else {return}
@@ -186,7 +174,6 @@ class SearchViewModel: BaseViewModel  {
             LoadingIndicator.showActivityIndicator()
             
             service.getAutocomplete( Model: model,success: { [self] (response) in
-            print(response)
                 guard let responseArray = response as?[Any] else { return}
                 
          self.autoCompleteResultModel = responseArray.map({ (AutoCompleteResultModel(from: $0) ?? AutoCompleteResultModel())})
@@ -194,11 +181,9 @@ class SearchViewModel: BaseViewModel  {
                 self.reloadTableView?()
                
                 LoadingIndicator.hideActivityIndicator()
-            //    self.presentViewController?(navigationController)
-
+   
             }, failure: nil)
             
         
     }
-//   getAutocomplete
 }

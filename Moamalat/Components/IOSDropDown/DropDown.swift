@@ -101,15 +101,13 @@ open class DropDown : UITextField{
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
-     //   self.text = optionArray[0]
+     
         self.delegate = self
     }
 
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         setupUI()
-     //   self.text = optionArray[0]
         self.delegate = self
     }
 
@@ -244,30 +242,21 @@ open class DropDown : UITextField{
         table.delegate = self
         table.alpha = 0
         table.separatorStyle = .none
-//        table.layer.cornerRadius = 3
+
         table.layer.cornerRadius = 5
         table.backgroundColor = rowBackgroundColor
         table.rowHeight = rowHeight
-//        parentController?.view.addSubview(shadow)
-//        parentController?.view.addSubview(table)
         containerView?.addSubview(shadow)
         containerView?.addSubview(table)
 
         self.isSelected = true
-//        let height = (self.parentController?.view.frame.height ?? 0) - (self.pointToParent.y + self.frame.height + 5)
+
         let height = (containerView?.frame.height ?? 0) - (self.pointToParent.y + self.frame.height + 2)
         var y = self.pointToParent.y+self.frame.height+2
         if height < (keyboardHeight+tableheightX){
 //            y = self.pointToParent.y - tableheightX
               y = self.pointToParent.y+self.frame.height+2
         }
-//        UIView.animate(withDuration: 0.9,
-//                       delay: 0,
-//                       usingSpringWithDamping: 0.4,
-//                       initialSpringVelocity: 0.1,
-//                       options: .curveEaseInOut,
-//                       animations: { () -> Void in
-
                         self.table.frame = CGRect(x: self.pointToParent.x,
                                                   y: y,
                                                   width: self.frame.width,

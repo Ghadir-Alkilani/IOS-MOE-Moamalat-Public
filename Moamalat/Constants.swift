@@ -41,7 +41,30 @@ enum Storyboards {
     static let FilterFullSearch = "FilterFullSearch"
     static let CreateCorrespondence = "CreateCorrespondence"
     static let SentCorrepondence = "SentCorrepondence"
-  
+    static let Settings = "Settings"
+    static let Details = "Details"
+}
+enum AttachURL {
+   static let url = "http://200.200.200.156:9080/MOAMALAT-ICN-WS/DownloadDocument"
+}
+enum OP {
+    static let LoginOP = "1"
+    static let ServerDateOP = "87"
+    static let FullSearchOP = "121"
+    static let SearchOP = "36"
+    static let MaxScopeOP = "122"
+    static let StatusOP = "49"
+    static let ScopeOP = "48"
+    static let TypeOP = "18"
+    static let BarcodeOP = "57"
+    static let PrivateInboxOP = "29"
+    static let AddAttachmentOP = "7"
+    static let CreateOP = "3"
+    static let ConfidentialtyOP = "16"
+    static let CategoryOP = "15"
+    static let CreateTypeOP = "14"
+    static let SentInboxOP = "118"
+    static let DetailsOP = "26"
 }
 
 enum API {

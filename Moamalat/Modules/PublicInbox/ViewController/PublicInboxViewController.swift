@@ -8,7 +8,10 @@
 import UIKit
 class PublicInboxViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
@@ -25,20 +28,31 @@ class PublicInboxViewController: UIViewController {
     
  let viewModel = PublicViewModel()
     
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        applyLayout()
+        setupViewModel()
+    }
+    
+    //MARK: - Helper Method
+    
+    func applyLayout() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .done, target: self, action: #selector(addTapped))
         print(queueName)
         print(inbasketFilter)
         self.tableView.register(UINib(nibName: "PrivateTableViewCell", bundle: nil), forCellReuseIdentifier: "PrivateCell")
         viewModel.getPrivateInbox(queueName: queueName, inbasketFilter: inbasketFilter)
-        setupViewModel()
     }
     
     @objc func addTapped (){
         self.dismiss(animated:true, completion:nil);
         self.navigationController?.popViewController(animated:true)
     }
+    
+    //MARK: - SetUp ViewModel
     
     func setupViewModel() {
 
@@ -56,13 +70,14 @@ class PublicInboxViewController: UIViewController {
                 viewModel.reloadTableView    = { [unowned self]  in
 
                    self.tableView.reloadData()
-                  //  refreshControl.endRefreshing()
                }
                 viewModel.refreshControl    = { [unowned self]  in
 
                     refreshControl.endRefreshing()
                }
     }
+    
+    //MARK: - Initialization
     
     class func initializeFromStoryboard() -> PublicInboxViewController {
         
@@ -84,7 +99,6 @@ extension PublicInboxViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
         if corressArr.count > 0 {
-          //  tableView.separatorStyle = .singleLine
             numOfSections            = 1
             tableView.backgroundView = nil
         }else{
@@ -119,7 +133,6 @@ extension PublicInboxViewController: UITableViewDataSource {
        cell2.corressDate.text = String(first10)
        cell2.corressNum.text = dept.displayCorrespondenceId
        cell2.deptName.text = dept.fromUser
-     //  cell2.ccImage.image = UIImage(named: "icon_cc")
         if dept.stepType == 2 {
             cell2.ccImage.image = UIImage(named: "icon_cc")
         }else if dept.stepType == 3{

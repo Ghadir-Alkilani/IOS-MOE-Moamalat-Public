@@ -17,8 +17,8 @@ class PrivateInboxService: BaseService {
         let conf = APIConfiguration(handleResponseModelManually: false)
         if isFilter{
       
-            header.updateValue("\(CachingManager.startRow())", forKey: "startRow")
-            header.updateValue("\(CachingManager.endRow())", forKey: "endRow")
+//            header.updateValue("\(CachingManager.startRow())", forKey: "startRow")
+//            header.updateValue("\(CachingManager.endRow())", forKey: "endRow")
             header = ["op":"29" ,"orderType":"3", "sortType":"2" , "startRow":"\(startRow)", "endRow":"\(endRow)" , "filterType":"-1"]
             print("scrolled")
         }else{
@@ -29,7 +29,6 @@ class PrivateInboxService: BaseService {
        
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
-        print(endPoint.headers)
         NetworkManager.manager.request(endPoint: endPoint, success: success, failure: failure)
     }
     func getUnreadInbox(success: APISuccess,

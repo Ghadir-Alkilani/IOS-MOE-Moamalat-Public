@@ -12,7 +12,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"57" ,"barcode":code]
+        let header = ["op": OP.BarcodeOP ,"barcode":code]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -23,7 +23,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"18"]
+        let header = ["op": OP.TypeOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -34,7 +34,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"48"]
+        let header = ["op":OP.ScopeOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -45,7 +45,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"49"]
+        let header = ["op":OP.StatusOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -56,7 +56,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: true)
-        let header = ["op":"122"]
+        let header = ["op":OP.MaxScopeOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -66,7 +66,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"36"]
+        let header = ["op":OP.SearchOP]
         let parameters: [String : Any] = ["correspondenceId": searchModel.correspondenceId ?? "",
                                           "correspondenceStatus": searchModel.correspondenceStatus ?? 0,
                                           "correspondenceTypeId": searchModel.correspondenceTypeId ?? "",
@@ -91,7 +91,7 @@ class SearchService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"121"]
+        let header = ["op": OP.FullSearchOP]
         let parameters: [String : Any] = [
             "searchText": searchModel.searchText!,
             "findIn": searchModel.findIn!,

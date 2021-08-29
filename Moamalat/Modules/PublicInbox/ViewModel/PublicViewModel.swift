@@ -29,15 +29,12 @@ class PublicViewModel: BaseViewModel  {
         LoadingIndicator.showActivityIndicator()
         
         service.getPrivateInbox(queueName: queueName, inbasketFilter:inbasketFilter , success: { [self] (response) in
-           
-            //LoadingIndicator.hideActivityIndicator()
-           print(response)
+        
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.privateArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
                LoadingIndicator.hideActivityIndicator()
                self.refreshControl?()

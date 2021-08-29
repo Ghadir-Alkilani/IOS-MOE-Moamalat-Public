@@ -10,6 +10,8 @@ import BarcodeScanner
 
 class SearchViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var advanceSearchView: UIView!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var searchBtn: PrimaryButton!
@@ -18,7 +20,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var fromLable: UILabel!
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var dateView: UIView!
-    
     @IBOutlet weak var searchTextTF: UITextField!
     @IBOutlet weak var searchByDateBtn: UIButton!
     @IBOutlet weak var toDateTF: UITextField!
@@ -48,10 +49,12 @@ class SearchViewController: UIViewController {
         CustomSegmentedControl! {
         
         didSet{
-            segmentControll.setButtonTitles(buttonTitles: ["AdvancedSearch".localized,"FullSearch".localized])
+            segmentControll.setButtonTitles(buttonTitles: ["AdvancedSearch".localized])
         }
     }
-  //  @IBOutlet weak var autocompleteTableView: UITableView!
+    
+    //MARK: - Variables
+    
     let autocompleteTableView = UITableView(frame: CGRect(x:0,y:250,width: 100,height: 100), style: UITableView.Style.plain)
     var isFilterWithAAT = Bool()
     var isFilterWithHash = Bool()
@@ -62,11 +65,23 @@ class SearchViewController: UIViewController {
     let viewModel = SearchViewModel()
     let controller = BarcodeScannerViewController()
     var progressView = loadingView()
-
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+          viewModel.getType()
+        viewModel.getScope()
+        viewModel.getStatus()
+        setupViewModel()
+        getHijiriYears()
+        setFonts()
+        viewModel.getMaxSearchScope()
+        adjustLayout()
+    }
+    
+    func adjustLayout()  {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.menuButton( self.revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), imageName:  "list")
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back"), style: .done, target: self, action: #selector(addTapped))
         containerStackView.removeArrangedSubview(fullSearchView)
         fullSearchView.isHidden = true
         segmentControll.addTarget(self, action: #selector(handeleSegmentChange), for: .valueChanged)
@@ -74,34 +89,18 @@ class SearchViewController: UIViewController {
     searchTextTF.delegate = self
         controller.codeDelegate = self
         controller.title = "scan"
-    autocompleteTableView.delegate = self
-          autocompleteTableView.dataSource = self
-       autocompleteTableView.isScrollEnabled = true
-      autocompleteTableView.isHidden = false
+//          autocompleteTableView.delegate = self
+//          autocompleteTableView.dataSource = self
+//       autocompleteTableView.isScrollEnabled = true
+//      autocompleteTableView.isHidden = false
         controller.errorDelegate = self
         controller.dismissalDelegate = self
-        viewModel.getType()
-        viewModel.getScope()
-        viewModel.getStatus()
-        setupViewModel()
-        getHijiriYears()
-        setFonts()
-        viewModel.getMaxSearchScope()
-//        if searchTextTF.sta {
-//            let obj = AutoCompleteModel.init()
-//                           obj.findIn = 1
-//                           obj.searchText = searchTextTF.text
-//                           obj.searchIn = "1"
-//                          // autocompleteTableView.isHidden = false
-//                           viewModel.getAutocomplete(model: obj)
-//                          // autocompleteTableView.reloadData()        }
-//      searchTextTF.filterStrings(["Red", "Blue", "Yellow"])
-//
-//    }
     }
+    
     @objc func addTapped (){
        self.navigationController?.popViewController(animated:true)
     }
+    
     func setFonts(){
         corresTypeLable.font = UIFont(name: Fonts.JFFlatRegular, size: 14)
         corresScopeLable.font = UIFont(name: Fonts.JFFlatRegular, size: 14)
@@ -147,14 +146,13 @@ class SearchViewController: UIViewController {
         datePicker.sizeToFit()
         dateFormatter.locale = Locale(identifier: "en_SA")
         dateFormatter.dateFormat = "yyyy/MM/dd"
-            toDateTF.text = dateFormatter.string(from: datePicker.date)
+        toDateTF.text = dateFormatter.string(from: datePicker.date)
         fromDateTF.text = dateFormatter.string(from: datePicker.date)
         CreateDatePicker()
         
-       // searchTextTF.
     }
     
-    func  CreateDatePicker(){
+    func  CreateDatePicker() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
@@ -165,16 +163,7 @@ class SearchViewController: UIViewController {
         toDateTF.inputAccessoryView = toolbar
         toDateTF.inputView = datePicker
     }
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//            if textField == fromDateTF {
-//                datePicker.datePickerMode = .date
-//            }
-//            if textField == toDateTF {
-//                datePicker.datePickerMode = .date
-//            }
-//
-//        }
-//
+
     @objc func donePressed(){
        
         dateFormatter.dateStyle = DateFormatter.Style.short
@@ -183,8 +172,7 @@ class SearchViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy/MM/dd"
 
         if fromDateTF.isFirstResponder {
-//               dateFormatter.dateStyle = .medium
-//               dateFormatter.timeStyle = .none
+
             fromDateTF.text = dateFormatter.string(from: datePicker.date)
             view.endEditing(true)
            }
@@ -211,16 +199,18 @@ class SearchViewController: UIViewController {
             fullSearchView.isHidden = true
             containerStackView.addArrangedSubview(advanceSearchView)
             advanceSearchView.isHidden = false
-            case 1:
-                containerStackView.removeArrangedSubview(advanceSearchView)
-                advanceSearchView.isHidden = true
-                containerStackView.addArrangedSubview(fullSearchView)
-                fullSearchView.isHidden = false
+//            case 1:
+//                containerStackView.removeArrangedSubview(advanceSearchView)
+//                advanceSearchView.isHidden = true
+//                containerStackView.addArrangedSubview(fullSearchView)
+//                fullSearchView.isHidden = false
         default:
             print("d")
         }
       
     }
+    
+    //MARK: - Actions
     
     @IBAction func searchByDateAction(_ sender: UIButton) {
         if sender.isSelected {
@@ -271,7 +261,6 @@ class SearchViewController: UIViewController {
         }
         viewModel.presentViewController = { [unowned self] (vc) in
             self.present(vc, animated: true, completion: nil)
-           // self.navigationController?.pushViewController(vc, animated: true)
         }
         
         viewModel.dismissVC = { [unowned self] () in
@@ -299,29 +288,17 @@ class SearchViewController: UIViewController {
         viewModel.reloadTableView = {
             self.autocompleteTableView.reloadData()
         }
-        viewModel.autoCompleteArray = {  [unowned self] (optionArray) in
-//            var array = [String]()
-//           // var destinationID = [Int]()
-//            for index in 0...optionArray.count-1 {
-//                let aObject = optionArray[index]
-//                array.append(aObject.valueAr ?? "")
-//              // destinationID.append(aObject.destinationId!)
-//            }
-//            searchTextTF.filterStrings(["Red", "Blue", "Yellow"])
-        }
     }
 
     @IBAction func searchAction(_ sender: Any) {
         let searchModel = SearchModel.init()
         searchModel.searchScope = scopeTF.optionArray[scopeTF.selectedIndex].id ?? 0
-       // searchModel.searchScope = 2
         searchModel.correspondenceStatus = statusTF.optionArray[statusTF.selectedIndex].id!
-//2
         searchModel.correspondenceId =  corresNumTF.text
         searchModel.startRow = 1
         searchModel.endRow = 20
-        searchModel.fromDate =  "1442/05/01" // fromDateTF.text
-        searchModel.toDate =  "1442/05/22"   // toDateTF.text
+        searchModel.fromDate =  fromDateTF.text
+        searchModel.toDate = toDateTF.text
         searchModel.hijricYear = Int(corresYearTF.text ?? "")
         searchModel.subject = subjectTF.text
         searchModel.incomingExternalNo = ""
@@ -332,7 +309,6 @@ class SearchViewController: UIViewController {
         }
         
         searchModel.correspondenceTypeId = (corresTypeTF.optionArray[corresTypeTF.selectedIndex].id!).description
-           // "3"
             
         viewModel.getSearchResult(search: searchModel)
         
@@ -361,6 +337,7 @@ class SearchViewController: UIViewController {
     @objc func handleTap(){
         view.endEditing(true)
     }
+    
     class func initializeFromStoryboard() -> SearchViewController {
         
         let storyboard = UIStoryboard(name: Storyboards.Search, bundle: nil)
@@ -391,7 +368,6 @@ extension SearchViewController:BarcodeScannerErrorDelegate{
    }
     
     func getHijiriYears(){
-       // dateArray.append( "search_all".localized)
     for _ in 1...10 {
       let tomorrow = Calendar.current.date(byAdding: .day, value: -355, to: today)
       let date = DateFormatter()
@@ -417,190 +393,10 @@ extension SearchViewController:BarcodeScannerDismissalDelegate{
        controller.reset()
    }
    
-   
 }
 
 // MARK:- UITextField Delegate
 
 extension SearchViewController : UITextFieldDelegate {
 
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if searchTextTF.isFirstResponder{
-            if searchTextTF.text?.count == 4 {
-
-                let obj = AutoCompleteModel.init()
-                obj.findIn = 1
-                obj.searchText = searchTextTF.text
-                obj.searchIn = "1"
-                autocompleteTableView.isHidden = false
-              //  autocompleteTableView.reloadData()
-                viewModel.getAutocomplete(model: obj)
-            }
-
-        }
-        return true
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
-    }
 }
-//        return  true // !autoCompleteText( in : textField, using: string, suggestionsArray: viewModel.autoCompleteResultModel)
-//    }
-////            if string == "@" {
-////                isFilterWithAAT = true
-////                return true
-////            }
-////            if string == "#" {
-////                isFilterWithHash = true
-////                return true
-////            }
-////            if !((textField.text?.contains("@"))!) {
-////                isFilterWithAAT = false
-////                return false
-////            }
-////            if ((textField.text?.contains("#"))!){
-////                isFilterWithHash = false
-////                return false
-////            }
-////        }
-////
-////        if (text.length < 2) {
-////           // newString = [text substringFromIndex:1];
-////        }else{
-////           // NSArray *Array = [text componentsSeparatedByString:@"@"];
-////          //  newString = [Array objectAtIndex:1];
-////        }
-////        [self getAutoComplete:@"2" searchTxt:newString];
-////        return YES;
-////    }
-////    if (isFilterWithHash) {
-////        [self fillAutoCompleteLocal];
-////        [self viewAutoComplete];
-////        return YES;
-////    }
-////
-////    if ([textField.text length] > 2 && !isFilterWithHash && !isFilterWithAAT) {
-////        NSUserDefaults* preferences = [NSUserDefaults standardUserDefaults];
-////        NSString* text =[[textField text] stringByAppendingString:string];
-////        [self getAutoComplete:[preferences objectForKey:@"maxScope"] searchTxt:text];
-////    }
-////return YES;
-//
-//
-////        if textField.text?.count == 4 {
-////
-////        }
-//
-//
-//
-////    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {  //delegate method
-////    return true
-////}
-////
-////    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-////        textField.resignFirstResponder()
-////        return true
-////    }
-//////func textFieldDidBeginEditing(_ textField: UITextField) {
-////////    if corresNumTF.isFirstResponder {
-////////        corresNumTF.placeholder = ""
-////////    }else if subjectTF.isFirstResponder{
-////////        subjectTF.placeholder = ""
-////////    }
-////////    if textField == fromDateTF {
-////////        datePicker.datePickerMode = .date
-////////    }
-////////    if textField == toDateTF {
-////////        datePicker.datePickerMode = .date
-////////    }
-//////}
-////
-//////func textFieldDidEndEditing(_ textField: UITextField) {
-//////    if corresNumTF.placeholder == ""{
-//////        corresNumTF.placeholder = "correspondence_number".localized
-//////    }else if subjectTF.placeholder == ""{
-//////        subjectTF.placeholder = "correspondence_subject".localized
-//////    }
-//////}
-//    func autoCompleteText( in textField: UITextField, using string: String, suggestionsArray: [String]) -> Bool {
-//            if !string.isEmpty,
-//                let selectedTextRange = textField.selectedTextRange,
-//                selectedTextRange.end == textField.endOfDocument,
-//                let prefixRange = textField.textRange(from: textField.beginningOfDocument, to: selectedTextRange.start),
-//                let text = textField.text( in : prefixRange) {
-//                let prefix = text + string
-//                let matches = suggestionsArray.filter {
-//                    $0.hasPrefix(prefix)
-//                }
-//                if (matches.count > 0) {
-//                    textField.text = matches[0]
-//                    if let start = textField.position(from: textField.beginningOfDocument, offset: prefix.count) {
-//                        textField.selectedTextRange = textField.textRange(from: start, to: textField.endOfDocument)
-//                        return true
-//                    }
-//                }
-//            }
-//            return false
-//        }
-//    }
-//
-//
-// MARK:- UITableViewController DataSource
-
-extension SearchViewController: UITableViewDataSource {
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel.autoCompleteResultModel.count)
-        return  viewModel.autoCompleteResultModel.count
-    }
-    
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let autoCompleteRowIdentifier = "AutoCompleteRowIdentifier"
-        let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: autoCompleteRowIdentifier, for: indexPath) as UITableViewCell
-        let index = indexPath.row as Int
-        let obj = viewModel.autoCompleteResultModel[index]
-
-        cell.textLabel?.text = obj.valueAr
-        print(obj.valueAr)
-        return cell
-    }
-
-  
-}
-
-
-
-//MARK:- UITableViewController Delegate
-
-extension SearchViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let selectedCell : UITableViewCell = tableView.cellForRow(at: indexPath)!
-        searchTextTF.text = selectedCell.textLabel?.text
-        autocompleteTableView.isHidden = true
-
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            searchTextTF.resignFirstResponder()
-            return true
-    }
-
-
-}
-
-//    "correspondenceId":"",
-//        "correspondenceStatus":2,
-//        "correspondenceTypeId":"3",
-//        "deliverDate":true,
-//        "endRow":20,
-//        "fromDate":"1442/05/01",
-//        "hijricYear":1442,
-//        "incomingExternalNo":"",
-//        "searchScope":2,
-//        "startRow":1,
-//        "subject":"",
-//        "toDate":"1442/05/22"
-//    }

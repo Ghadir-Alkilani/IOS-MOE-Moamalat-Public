@@ -30,28 +30,22 @@ class InboxViewModel: BaseViewModel  {
     var importantArray : ((_ array: [PrivateInboxModel]) -> ())?
     var nowArray : ((_ array: [PrivateInboxModel]) -> ())?
     var urgentImportantArray : ((_ array: [PrivateInboxModel]) -> ())?
-
     var countsDic : ((_ Dic: [String:Any]) -> ())?
     var reloadTableView : (()->())?
     var refreshControl: (() -> ())?
 
     // MARK: - API Calling
     
-    
     func getpublicInbox()  {
         
-     //   LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         service.getpublicInbox(success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.publicModel = responseArray.map({ (publicInbox(from: $0) ?? publicInbox())})
                self.inboxArray?(publicModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -61,12 +55,9 @@ class InboxViewModel: BaseViewModel  {
     
     func getPrivateInbox(isFilter : Bool , startRow : Int , endRow : Int)  {
         
-     //   LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getPrivateInbox(isFilter : isFilter, startRow : startRow , endRow : endRow , success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
@@ -76,23 +67,21 @@ class InboxViewModel: BaseViewModel  {
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
-        }, failure: nil)
+        }) { (any, error) in
+            self.stopLoadingView?()
+        }
         
     }
     func getDelayInbox()  {
         
-      //  LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getDelayInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.delayArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -101,18 +90,14 @@ class InboxViewModel: BaseViewModel  {
     }
     func getUrgentInbox()  {
         startLoadingView?()
-       // LoadingIndicator.showActivityIndicator()
         
         privateService.getUrgentInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.urgentArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -121,18 +106,14 @@ class InboxViewModel: BaseViewModel  {
     }
     func getImportantInbox()  {
         
-      //  LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getImportantInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.importantArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -142,18 +123,14 @@ class InboxViewModel: BaseViewModel  {
     
     func getUrgentImportantInbox()  {
         
-      //  LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getUrgentInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.importantArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -162,18 +139,13 @@ class InboxViewModel: BaseViewModel  {
     
     func getNowInbox()  {
         
-     //   LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getUrgentInbox( success: { [self] (response) in
-           
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
-            guard let responseArray = response as?[Any] else { return}
+        guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.nowArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -182,18 +154,14 @@ class InboxViewModel: BaseViewModel  {
     }
     func getCCInbox()  {
         
-       // LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         privateService.getUrgentInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.CCArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -202,18 +170,14 @@ class InboxViewModel: BaseViewModel  {
     }
     func getUnreadInbox()  {
         startLoadingView?()
-    //    LoadingIndicator.showActivityIndicator()
         
         privateService.getUrgentInbox( success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response)
             guard let responseArray = response as?[Any] else { return}
               print(responseArray)
               
             self.privateModel = responseArray.map({ (PrivateInboxModel(from: $0) ?? PrivateInboxModel())})
                self.unreadArray?(privateModel)
-           //    print(correspondenceModelsArray)
                self.reloadTableView?()
             self.stopLoadingView?()
                self.refreshControl?()
@@ -222,16 +186,12 @@ class InboxViewModel: BaseViewModel  {
     }
     func getCounts() {
         
-      //  LoadingIndicator.showActivityIndicator()
         startLoadingView?()
         countService.getCounts(success: { [self] (response) in
            
-            //LoadingIndicator.hideActivityIndicator()
-            print(response!)
             let halfTimeCount = (response as AnyObject).value(forKey:"halfTimeCount")
             let ccCount = (response as AnyObject).value(forKey:"ccCount")
             let unreadCount = (response as AnyObject).value(forKey:"UnreadCount")
-           // let readcount = (response as AnyObject).value(forKey:"Readcount")
             var dic = [String:Any]()
             dic.updateValue(halfTimeCount ?? 0, forKey: "halfTimeCount")
             dic.updateValue(ccCount ?? 0, forKey: "ccCount")

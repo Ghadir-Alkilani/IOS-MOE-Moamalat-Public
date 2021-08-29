@@ -14,14 +14,18 @@ class SentCorrespondenceTableViewCell: UITableViewCell {
     @IBOutlet weak var corressDate: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCellStyle()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    //MARK:- Helper Methods
+    
+    func setupCellStyle() {
+        
         corressNum.font = UIFont.jFFlatRegular(fontSize: 15)
         corressTitle.font = UIFont.jFFlatRegular(fontSize: 15)
         corressDate.font = UIFont.jFFlatRegular(fontSize: 15)
         corressType.font = UIFont.jFFlatRegular(fontSize: 15)
+        
     }
 
 }

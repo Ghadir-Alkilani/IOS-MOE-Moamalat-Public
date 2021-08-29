@@ -10,7 +10,6 @@ import PDFKit
 
 class AttachmentDetails: BaseModel, Decodable {
     
-  
     var fileName : String?
     var errorCode : String?
     var modifiedBy : String?

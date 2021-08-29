@@ -9,6 +9,7 @@ import Foundation
 import AnyCodable
 
 class APIResponseModel: BaseModel, Codable {
+  
     var errorCode: String?
     var out: AnyCodable?
 

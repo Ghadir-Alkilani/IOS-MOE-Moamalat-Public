@@ -243,8 +243,8 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="364" height="33"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CA6-5a-Zh1">
-                                                                    <rect key="frame" x="8" y="7.5" width="278" height="18"/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                    <rect key="frame" x="8" y="6.5" width="278" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                     <color key="textColor" name="MoamalatDarkBlue"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>

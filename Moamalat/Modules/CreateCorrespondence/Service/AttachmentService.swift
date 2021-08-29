@@ -13,7 +13,7 @@ class AttachmentService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: true)
-        let header  = ["op":"7" ,"correspondenceId":"\(Model.correspondenceId ?? "")",
+        let header  = ["op": OP.AddAttachmentOP ,"correspondenceId":"\(Model.correspondenceId ?? "")",
                        "correspondenceTypeId":"\(Model.correspondenceTypeId ?? 0 )"]
         
         let parameters: [String : Any] = ["mimType": Model.mimType ?? "",
@@ -21,9 +21,7 @@ class AttachmentService: BaseService {
                                           "documentTitle": Model.documentTitle ?? "",
                                           "fileName": Model.fileName ?? ""
         ]
-       print(parameters)
-        print(header)
-        
+     
         let endPoint = EndPoint(method: .post, parameters: parameters  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -38,7 +36,7 @@ class AttachmentService: BaseService {
         let parameters: [String : Any] = ["docPassword": "" ]
         print(header)
         
-        let endPoint = EndPoint(method: .post, parameters: parameters  , headers: header , configurations: conf , fullURL: "http://200.200.200.156:9080/MOAMALAT-ICN-WS/DownloadDocument")
+        let endPoint = EndPoint(method: .post, parameters: parameters  , headers: header , configurations: conf , fullURL: AttachURL.url)
     
         print(endPoint.url)
         NetworkManager.manager.request(endPoint: endPoint, success: success, failure: failure)

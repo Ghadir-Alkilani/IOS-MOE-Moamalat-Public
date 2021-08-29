@@ -10,10 +10,14 @@ import UIKit
 
 
 class SearchResultViewModel: BaseViewModel  {
+    
+    // MARK: - Variabels
+    
     var searcResultArray : ((_ array: [SearchResultModel]) -> ())?
      var searchResultModel = [SearchResultModel]()
     var reloadTableView : (()->())?
     var refreshControl: (() -> ())?
+    
     func passData(){
         self.reloadTableView?()
     self.searcResultArray?(searchResultModel)

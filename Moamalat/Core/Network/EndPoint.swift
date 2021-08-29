@@ -27,8 +27,6 @@ enum APIEncoding {
 struct EndPoint {
     
     // MARK: - Variables
-    
-    //var path: String
     var method: APIMethod
     var parameters: [String : Any]?
     var encoding: APIEncoding?
@@ -47,8 +45,8 @@ struct EndPoint {
 
     init() {
         
-       // self.path = ""
-        self.method = .get
+    
+        self.method = .post
         self.parameters = nil
         self.encoding = nil
         self.headers = nil
@@ -57,16 +55,14 @@ struct EndPoint {
     }
     
 
-    init(//path: String,
-         method: APIMethod,
+    init(
+        method: APIMethod,
          parameters: [String : Any]?,
          encoding: APIEncoding? = nil,
          headers: [String : String]? = nil,
          configurations: APIConfiguration? = nil,
          fullURL: String? = nil) {
         
-
-      //  self.path = path
         self.method = method
         self.parameters = parameters
         self.encoding = encoding

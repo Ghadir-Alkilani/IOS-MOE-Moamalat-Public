@@ -14,6 +14,7 @@
 "login_password_textfield_placeholder" = "Password";
 "login_with_touchid_title" = "Login With Touch ID";
 "login_button_title" = "Log In";
+"copy_num"="Copy number : 1";
 
 //MARK: - Inbox Screen
 
@@ -76,3 +77,10 @@
 "last_Week"="Last week";
 "last_Month"="Last month";
 "other"="other";
+
+//MARK: -  APIResponseHandler
+"no_results"="Sorry.. no results!";
+"an_unexpected_error_occurred"="An unexpected error occurred, please see your system administrator";
+"the_username_or_password_is_incorrect"="The username or password is incorrect";
+"username_or_password_not_passed"="Username or password not passed";
+"the_session_has_expire"="The session has expired";

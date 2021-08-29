@@ -12,6 +12,8 @@ class LoginVC: UIViewController {
     //MARK: - Outlets
     
  
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var containerViewWidthConst: NSLayoutConstraint!
     @IBOutlet weak var IdNumberTextField: UITextField! {
         didSet {
             
@@ -27,8 +29,11 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var loginButton: SecondaryButton! {
         didSet {
-            loginButton.setTitle("login_button_title".localized, for: .normal)
-            
+            let attributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.font : UIFont.jFFlatRegular(fontSize: 18)
+            ]
+            loginButton.setAttributedTitle(NSAttributedString(string: "login_button_title".localized, attributes: attributes as [NSAttributedString.Key : Any]), for: .normal)
         }
         
     }
@@ -44,34 +49,91 @@ class LoginVC: UIViewController {
         }
     }
     
-    @IBOutlet weak var loginWithTouchIdTitle: UILabel! {
+    @IBOutlet weak var copyNumLable: UILabel! {
         didSet {
-            loginWithTouchIdTitle.text = "login_with_touchid_title" .localized
+            copyNumLable.text = "copy_num".localized
+            copyNumLable.font = UIFont.jFFlatRegular(fontSize: 13)
         }
         
     }
-    var progressView = loadingView()
     
+    @IBOutlet weak var loginWithTouchIdTitle: UILabel! {
+        didSet {
+            loginWithTouchIdTitle.text = "login_with_touchid_title" .localized
+            loginWithTouchIdTitle.font = UIFont.jFFlatRegular(fontSize: 15)
+
+        }
+    }
+    var progressView = loadingView()
     let viewModel = LoginViewModel()
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         IdNumberTextField.text = "fntadmin"
         passwordTextField.text = "filenet"
+        //setUpPadScreen()
         setupViewModel()
        
-        // Do any additional setup after loading the view.
     }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+            var newConstraint = NSLayoutConstraint()
+
+        if UIDevice.current.orientation.isPortrait {
+                // activate landscape changes
+               
+            backgroundImage.image = UIImage (named: "BG")
+        } else if UIDevice.current.orientation.isLandscape {
+                // activate portrait changes
+            backgroundImage.image = UIImage (named: "MaskLoginLand")
+            }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    if UIDevice.current.userInterfaceIdiom  == .pad {
+        containerViewWidthConst.constant = 600
+    }
+        if let orientation = self.view.window?.windowScene?.interfaceOrientation {
+            let landscape = orientation == .landscapeLeft || orientation == .landscapeRight
+            if landscape{
+                
+                backgroundImage.image = UIImage (named: "MaskLoginLand")
+               
+            }else{
+                backgroundImage.image = UIImage (named: "BG")
+            }
+        }
+    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        setUpPadScreen()
+//    }
+//    func setUpPadScreen()  {
+//        if UIDevice.current.userInterfaceIdiom  == .pad {
+//
+//            if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isPortrait{
+//                backgroundImage.image = UIImage (named: "MaskLoginLand")
+//            }
+//            if  UIDevice.current.orientation.isLandscape {
+//
+//  backgroundImage.image = UIImage (named: "MaskLoginLand")
+//
+//            }
+//
+//    }
+//    }
     
+    //MARK: - Actions
     
     @IBAction func loginBtn(_ sender: Any) {
-//        let vc = InboxViewController.initializeFromStoryboard()
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        navigationController.modalTransitionStyle = .crossDissolve
-//        navigationController.modalPresentationStyle = .overFullScreen
+
         guard IdNumberTextField.text != "" &&  passwordTextField.text != "" else {return}
         
       viewModel.loginandEncrypt(IdNumberTextField.text?.replacingOccurrences(of: " ", with: ""), passwordTextField.text?.replacingOccurrences(of: " ", with: ""))
-   // self.present(navigationController, animated: true, completion: nil)
+
     }
     
     

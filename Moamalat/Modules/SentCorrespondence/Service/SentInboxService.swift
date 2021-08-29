@@ -16,13 +16,12 @@ class SentInboxService: BaseService {
         
         let conf = APIConfiguration(handleResponseModelManually: false)
 
-           header = ["op":"118" ,
+        header = ["op":OP.SentInboxOP ,
                      "sentCorrespondencesPeriod":"\(model.sentCorrespondencesPeriod ?? 0)",
-                     "fromDate": model.fromDate ?? "" ,"isSent": "\(model.isSent ?? true)"]
+                     "fromDate": model.fromDate ?? "" , "toDate" :model.toDate ?? "" , "isSent": "\(model.isSent ?? true)"]
        
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
-        
-        print(endPoint.headers)
+    
         NetworkManager.manager.request(endPoint: endPoint, success: success, failure: failure)
     }
 }

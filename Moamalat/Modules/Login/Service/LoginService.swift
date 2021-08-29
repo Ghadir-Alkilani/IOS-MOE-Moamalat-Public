@@ -18,8 +18,7 @@ class LoginService: BaseService {
               "password": password ?? ""]
         let conf = APIConfiguration(handleErrorsManually: false, handleNetworkErrorsManually: false, handleNetworkActivityIndicatorManually: false, handleResponseModelManually: true, handleActivityIndicatorManually: true)
         
-        let endPoint = EndPoint( method: .post, parameters: parameters, headers: ["op" :
-        "1"] ,configurations: conf)
+        let endPoint = EndPoint( method: .post, parameters: parameters, headers: ["op" : OP.LoginOP ] ,configurations: conf)
  print(endPoint)
         NetworkManager.manager.request(endPoint: endPoint, success: success, failure: failure)
     }

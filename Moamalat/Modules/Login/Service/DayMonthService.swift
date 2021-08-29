@@ -11,16 +11,12 @@ class DayMonthService: BaseService {
     
     func getDayMonth(success: APISuccess,
                     failure: APIFailure) {
-       // getHttpHeaders(op: "87")
-     //  let parameters: [String : Any] = ["op": API.GetDayMonth]
+  
         let conf = APIConfiguration(handleErrorsManually: false, handleNetworkErrorsManually: false, handleNetworkActivityIndicatorManually: false, handleResponseModelManually: true, handleActivityIndicatorManually: true)
-        let endPoint = EndPoint(method: .post, parameters: nil  , headers: ["op":"87"], configurations:conf)
+        let endPoint = EndPoint(method: .post, parameters: nil  , headers: ["op": OP.ServerDateOP], configurations:conf)
       
         NetworkManager.manager.request(endPoint: endPoint, success: success, failure: failure)
-       // endPoint.configurations?.handleResponseModelManually = false
-       print(endPoint.url)
-        print(endPoint.headers)
-        print(endPoint)
+   
        
 }
 }

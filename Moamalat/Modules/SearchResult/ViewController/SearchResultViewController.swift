@@ -8,15 +8,30 @@
 import UIKit
 
 class SearchResultViewController: UIViewController {
+    
+    
+    //MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    //MARK: - Variables
     
     let viewModel = SearchResultViewModel()
     var searcResultArray = [SearchResultModel]()
     
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  viewModel.passData()
         setupViewModel()
+        applyLayout()
+    }
+    
+    //MARK: - Helper Methods
+    
+    func applyLayout() {
         self.tableView.register(UINib(nibName: "PrivateTableViewCell", bundle: nil), forCellReuseIdentifier: "PrivateCell")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "header") ,
                                                                          for: .default)
@@ -24,13 +39,13 @@ class SearchResultViewController: UIViewController {
         
         navigationItem.leftBarButtonItem?.tintColor = .white
         tableView.reloadData()
-        print(searcResultArray)
-        print(searcResultArray)
     }
+    
     @objc func addTapped (){
         self.dismiss(animated:true, completion:nil);
         self.navigationController?.popViewController(animated:true)
     }
+    
     //MARK: - SetUp ViewModel
     
     func setupViewModel() {
@@ -40,16 +55,13 @@ class SearchResultViewController: UIViewController {
             print(searcResultArray)
         }
         viewModel.reloadTableView    = { [unowned self]  in
-
            self.tableView.reloadData()
-          //  refreshControl.endRefreshing()
        }
-        viewModel.refreshControl    = { [unowned self]  in
-
-          //  refreshControl.endRefreshing()
-       }
+       
     }
     
+    
+    //MARK: - Initialization
     
     class func initializeFromStoryboard() -> SearchResultViewController {
         
@@ -88,28 +100,15 @@ extension SearchResultViewController: UITableViewDataSource {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "PrivateCell", for: indexPath) as! PrivateTableViewCell
         let result = viewModel.searchResultModel
         let dept = result[indexPath.row]
-       // let dept = searcResultArray[indexPath.row]
         let str = "\(dept.correspondenceDate!)"
-       
-      // let first10 = str.prefix(10)
         let type = "\(dept.correspondenceTypeName!)"
-       
-       let first5 = type.dropFirst(7)
+        let first5 = type.dropFirst(7)
         cell.corressType.text = String(first5)
-       cell.corressTitle.text = dept.correspondenceSubject
-       cell.corressDate.text = str
-       cell.corressNum.text = dept.displayCorrespondenceId
-       cell.deptName.text = dept.destinationName
-      
+        cell.corressTitle.text = dept.correspondenceSubject
+        cell.corressDate.text = str
+        cell.corressNum.text = dept.displayCorrespondenceId
+        cell.deptName.text = dept.destinationName
         return cell
     }
 
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//
-////        if indexPath.row + 1 == corressArr.count {
-////            print("scrolled")
-////            isFilter = true
-////         viewModel.getPrivateInbox(isFilter: isFilter)
-////        }
-//    }
 }

@@ -23,11 +23,18 @@ class AttachmentTableViewCell: UITableViewCell {
     @IBOutlet weak var editDateValue: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupCellStyle()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+ 
+        // Configure the view for the selected state
+    }
+    
+    //MARK:- Helper Methods
+    
+    func setupCellStyle() {
         byLable.font = UIFont.jFFlatRegular(fontSize: 15)
         documentTitleLable.font = UIFont.jFFlatRegular(fontSize: 15)
         byValue.font = UIFont.jFFlatRegular(fontSize: 15)
@@ -37,7 +44,6 @@ class AttachmentTableViewCell: UITableViewCell {
         editDateValue.font = UIFont.jFFlatRegular(fontSize: 15)
         byLable.font = UIFont.jFFlatRegular(fontSize: 15)
         editDateLable.font  = UIFont.jFFlatRegular(fontSize: 15)
-        // Configure the view for the selected state
     }
 
 }

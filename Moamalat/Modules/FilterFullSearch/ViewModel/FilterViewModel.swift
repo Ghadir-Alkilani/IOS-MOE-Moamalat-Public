@@ -10,7 +10,6 @@ class FilterViewModel: BaseViewModel  {
     
     // MARK: - Variabels
     
-  //  var privateModel = [PrivateInboxModel]()
     var searchResultModel = [SearchResultModel]()
     var dropDownModel = [DropDownModel]()
     var searchModel = [SearchModel]()
@@ -19,13 +18,15 @@ class FilterViewModel: BaseViewModel  {
     var statusArray : ((_ array: [DropDownModel]) -> ())?
     var typeArray : ((_ array: [DropDownModel]) -> ())?
     var presentViewController: ((_ vc: UIViewController) -> ())?
-func getType()  {
+    
+    // MARK: - API Calling
+    
+   func getType()  {
     
     LoadingIndicator.showActivityIndicator()
     
     service.getType( success: { [self] (response) in
         
-        print(response)
         guard let responseArray = response as?[Any] else { return}
         self.dropDownModel = responseArray.map({ (DropDownModel(from: $0) ?? DropDownModel())})
         self.typeArray?(dropDownModel)
@@ -38,8 +39,7 @@ func getScope()  {
     LoadingIndicator.showActivityIndicator()
     
     service.getScope( success: { [self] (response) in
-        
-        print(response)
+    
         guard let responseArray = response as?[Any] else { return}
         self.dropDownModel = responseArray.map({ (DropDownModel(from: $0) ?? DropDownModel())})
         self.scopeArray?(dropDownModel)
@@ -52,18 +52,16 @@ func getScope()  {
         LoadingIndicator.showActivityIndicator()
         
         service.getFullSearchResult(searchModel: search,success: { [self] (response) in
-            print(response)
+   
             guard let responseArray = response as?[Any] else { return}
             self.searchResultModel = responseArray.map({ (SearchResultModel(from: $0) ?? SearchResultModel())})
-            //self.searcResultArray?(searchResultModel)
+          
             let VC = SearchResultViewController.initializeFromStoryboard()
-           // VC.isHidden = true
+     
             let navigationController = UINavigationController(rootViewController: VC)
             navigationController.modalPresentationStyle = .overFullScreen
-          
+    
             VC.viewModel.searchResultModel = searchResultModel
-           // self.dismissVC?()
-          //  VC.viewModel.passData()
             LoadingIndicator.hideActivityIndicator()
             self.presentViewController?(navigationController)
 

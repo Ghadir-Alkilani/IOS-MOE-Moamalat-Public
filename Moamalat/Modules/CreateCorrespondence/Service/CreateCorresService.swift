@@ -12,7 +12,7 @@ class CreateCorrespondenceService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"14"]
+        let header = ["op":OP.CreateTypeOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -22,7 +22,7 @@ class CreateCorrespondenceService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"15"]
+        let header = ["op":OP.CategoryOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -32,7 +32,7 @@ class CreateCorrespondenceService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"16"]
+        let header = ["op":OP.ConfidentialtyOP]
         let endPoint = EndPoint(method: .post, parameters: nil  , headers: header , configurations: conf)
         
         print(endPoint.url)
@@ -42,7 +42,7 @@ class CreateCorrespondenceService: BaseService {
                     failure: APIFailure) {
    
         let conf = APIConfiguration(handleResponseModelManually: false)
-        let header = ["op":"3"]
+        let header = ["op":OP.CreateOP]
         let parameters: [String : Any] = ["categoryId": createModel.categoryId!,
              "confidentialityId": createModel.confidentialityId!,
                                           "subject": createModel.subject!,

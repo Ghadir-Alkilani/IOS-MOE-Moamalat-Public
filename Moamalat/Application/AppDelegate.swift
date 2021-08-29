@@ -32,12 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIView.transition(with: window!, duration: 1.0, options: .transitionFlipFromTop, animations: nil, completion: nil)
             }
         }
-//    func setupRootViewController() {
-//            let rootVC = LoginVC.initializeFromStoryboard()
-//            self.window?.rootViewController = rootVC
-//            self.window?.makeKeyAndVisible()
-//
-//    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
